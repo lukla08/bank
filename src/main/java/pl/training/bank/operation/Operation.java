@@ -2,6 +2,8 @@ package pl.training.bank.operation;
 
 import pl.training.bank.service.repository.AccountsRepository;
 
+import java.text.NumberFormat;
+
 public abstract class Operation {
 
     protected AccountsRepository accountsRepository;
@@ -46,5 +48,9 @@ public abstract class Operation {
     }
 
     public abstract void execute();
+
+    protected String formatCurrency(long value) {
+        return NumberFormat.getCurrencyInstance().format((double) value / 100);
+    }
 
 }

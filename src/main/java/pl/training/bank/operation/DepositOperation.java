@@ -15,4 +15,9 @@ public class DepositOperation extends Operation {
        accountsRepository.update(account);
     }
 
+    @Override
+    public String toString() {
+        return String.format("%s <== %s", sourceAccountNumber, formatCurrency(funds));
+    }
+
 }
