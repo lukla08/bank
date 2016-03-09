@@ -11,22 +11,18 @@ public class App {
 
     public static void main(String[] args) {
         try (ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("beans.xml")) {
-
             AccountsService accountsService = applicationContext.getBean(AccountsService.class);
 
             Account firstAccount = accountsService.createAccount();
-            accountsService.process(new DepositOperation(firstAccount.getNumber(), 1000));
-
             Account secondAccount = accountsService.createAccount();
+
+            accountsService.process(new DepositOperation(firstAccount.getNumber(), 1000));
             accountsService.process(new DepositOperation(secondAccount.getNumber(), 500));
-
             accountsService.process(new WithdrawOperation(firstAccount.getNumber(), 200));
-
             accountsService.process(new TransferOperation(firstAccount.getNumber(), secondAccount.getNumber(), 10));
 
             System.out.println(firstAccount);
             System.out.println(secondAccount);
-
         }
     }
 
