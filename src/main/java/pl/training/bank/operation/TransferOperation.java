@@ -21,4 +21,9 @@ public class TransferOperation extends Operation {
         depositOperation.execute();
     }
 
+    @Override
+    public String toString() {
+        return String.format("%s ==> %s ==> %s", sourceAccountNumber, formatCurrency(funds), destinationAccountNumber);
+    }
+
 }
