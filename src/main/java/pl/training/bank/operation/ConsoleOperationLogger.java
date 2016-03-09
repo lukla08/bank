@@ -3,8 +3,6 @@ package pl.training.bank.operation;
 import org.aspectj.lang.annotation.*;
 import pl.training.bank.BankException;
 
-import java.text.NumberFormat;
-
 @Aspect
 public class ConsoleOperationLogger {
 
