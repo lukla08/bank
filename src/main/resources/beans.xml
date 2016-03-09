@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <bean id="accountsRepository" class="pl.training.bank.service.repository.HashMapAccountsRepository"/>
 
@@ -11,5 +11,17 @@
         <constructor-arg name="accountsRepository" ref="accountsRepository"/>
         <constructor-arg name="accountNumberGenerator" ref="accountNumberGenerator"/>
     </bean>
+
+    <bean id="operationLogger" class="pl.training.bank.operation.ConsoleOperationLogger"/>
+
+    <aop:aspectj-autoproxy/>
+    <aop:config>
+        <aop:aspect ref="operationLogger">
+            <aop:pointcut id="processOperation" expression="execution(void pl.training.bank.service.AccountsService.process(..)) and args(operation)"/>
+            <aop:before method="beforeProcessOperation" pointcut-ref="processOperation"/>
+            <aop:after-returning method="onSuccess" pointcut-ref="processOperation"/>
+            <aop:after-throwing method="onException" throwing="ex" pointcut-ref="processOperation"/>
+        </aop:aspect>
+    </aop:config>
 
 </beans>
