@@ -10,11 +10,6 @@ public abstract class Operation {
     protected String destinationAccountNumber;
     protected long funds;
 
-    public String getName() {
-        String className = getClass().getSimpleName();
-        return className.substring(0, 1).toLowerCase() + className.substring(1);
-    }
-
     public void setName(String name) {
         this.name = name;
     }
