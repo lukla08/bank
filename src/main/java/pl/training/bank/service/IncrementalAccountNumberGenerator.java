@@ -2,6 +2,7 @@ package pl.training.bank.service;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+@Generator
 public class IncrementalAccountNumberGenerator implements AccountNumberGenerator {
 
     private AtomicLong counter = new AtomicLong();
