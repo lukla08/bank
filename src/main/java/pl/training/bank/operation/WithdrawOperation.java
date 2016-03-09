@@ -4,6 +4,10 @@ import pl.training.bank.entity.Account;
 
 public class WithdrawOperation extends Operation {
 
+    public WithdrawOperation(String sourceAccountNumber, long funds) {
+        super(sourceAccountNumber, funds);
+    }
+
     @Override
     public void execute() {
         Account account = accountsRepository.getByNumber(sourceAccountNumber);

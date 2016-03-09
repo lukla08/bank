@@ -5,13 +5,16 @@ import pl.training.bank.service.repository.AccountsRepository;
 public abstract class Operation {
 
     protected AccountsRepository accountsRepository;
-    protected String name;
     protected String sourceAccountNumber;
     protected String destinationAccountNumber;
     protected long funds;
 
-    public void setName(String name) {
-        this.name = name;
+    public Operation() {
+    }
+
+    public Operation(String sourceAccountNumber, long funds) {
+        this.sourceAccountNumber = sourceAccountNumber;
+        this.funds = funds;
     }
 
     public String getSourceAccountNumber() {

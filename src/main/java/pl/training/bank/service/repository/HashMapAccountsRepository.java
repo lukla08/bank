@@ -31,7 +31,7 @@ public class HashMapAccountsRepository implements AccountsRepository {
     }
 
     private void throwExceptionIfAccountDoesNotExist(String accountsNumber) {
-        if (accounts.containsKey(accountsNumber)) {
+        if (!accounts.containsKey(accountsNumber)) {
             throw new AccountNotFoundException();
         }
     }

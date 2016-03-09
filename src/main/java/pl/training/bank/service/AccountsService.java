@@ -24,11 +24,20 @@ public class AccountsService {
     }
 
     public void process(Operation operation) {
+        operation.setAccountsRepository(accountsRepository);
         operation.execute();
     }
 
     public List<Account> getAccounts(int pageNumber, int pageSize) {
         return new ArrayList<>();
+    }
+
+    public void init() {
+        System.out.println("AccountsService init...");
+    }
+
+    public void destroy() {
+        System.out.println("AccountsService destroy...");
     }
 
 }
