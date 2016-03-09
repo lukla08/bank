@@ -6,6 +6,8 @@ public class TransferOperation extends Operation {
     private DepositOperation depositOperation;
 
     public TransferOperation(String sourceAccountNumber, String destinationAccountNumber, long funds) {
+        super(sourceAccountNumber, funds);
+        this.destinationAccountNumber = destinationAccountNumber;
         this.withdrawOperation = new WithdrawOperation(sourceAccountNumber, funds);
         this.depositOperation = new DepositOperation(destinationAccountNumber, funds);
     }
