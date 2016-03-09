@@ -17,14 +17,7 @@ public class ConsoleOperationLogger {
     @Before("processOperation(operation)")
     public void beforeProcessOperation(Operation operation) {
         System.out.println(SEPARATOR);
-        if (operation instanceof DepositOperation) {
-            System.out.format("%s <== %s\n", operation.getSourceAccountNumber(), formatCurrency(operation.getFunds()));
-        } else if (operation instanceof WithdrawOperation) {
-            System.out.format("%s ==> %s\n", operation.getSourceAccountNumber(), formatCurrency(operation.getFunds()));
-        } else if (operation instanceof TransferOperation) {
-            System.out.format("%s ==> %s ==> %s\n", operation.getSourceAccountNumber(), formatCurrency(operation.getFunds()),
-                    operation.getDestinationAccountNumber());
-        }
+        System.out.println(operation);
     }
 
     @AfterReturning("processOperation(operation)")
@@ -35,10 +28,6 @@ public class ConsoleOperationLogger {
     @AfterThrowing(value = "processOperation(operation)", throwing = "ex")
     public void onException(Operation operation, BankException ex) {
         System.out.format("Status: EXCEPTION (%s)\n%s\n", ex.getClass().getSimpleName(), SEPARATOR);
-    }
-
-    private String formatCurrency(long value) {
-        return NumberFormat.getCurrencyInstance().format((double) value / 100);
     }
 
 }
