@@ -2,8 +2,6 @@ package pl.training.bank.operation;
 
 import pl.training.bank.BankException;
 
-import java.text.NumberFormat;
-
 public class ConsoleOperationLogger {
 
     private static final String SEPARATOR = "####################################################################";
