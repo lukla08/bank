@@ -5,13 +5,17 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import pl.training.bank.service.repository.AccountsRepository;
 import pl.training.bank.service.repository.MySQLAccountsRepository;
 
 import javax.sql.DataSource;
 
 @PropertySource("classpath:jdbc.properties")
+@EnableTransactionManagement
 @Configuration
 public class Persistence {
 
@@ -31,6 +35,11 @@ public class Persistence {
     @Bean
     public AccountsRepository accountsRepository(DataSource dataSource) {
         return new MySQLAccountsRepository(dataSource);
+    }
+
+    @Bean
+    public PlatformTransactionManager transactionManager(DataSource dataSource) {
+        return new DataSourceTransactionManager(dataSource);
     }
 
 }
