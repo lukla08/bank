@@ -7,11 +7,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import javax.sql.DataSource;
 import java.util.concurrent.atomic.AtomicLong;
 
-public class HibernateIncrementalAccountNumberGenerator implements AccountNumberGenerator {
+public class HibernateIncrementalAccountNumberGenerator extends IncrementalAccountNumberGenerator {
 
     private static final String SELECT_LAST_ACCOUNT_NUMBER_HQL = "select max(a.number) from Account a";
-
-    private AtomicLong counter = new AtomicLong();
 
     public HibernateIncrementalAccountNumberGenerator(SessionFactory sessionFactory) {
         String lastAccountNumber = (String) sessionFactory.openSession()
@@ -20,11 +18,6 @@ public class HibernateIncrementalAccountNumberGenerator implements AccountNumber
         if (lastAccountNumber != null) {
             counter = new AtomicLong(Long.parseLong(lastAccountNumber));
         }
-    }
-
-    @Override
-    public String getNext() {
-        return String.format("%026d", counter.incrementAndGet());
     }
 
 }
