@@ -16,6 +16,7 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import pl.training.bank.service.repository.AccountsRepository;
+import pl.training.bank.service.repository.HibernateAccountsRepository;
 import pl.training.bank.service.repository.MySQLAccountsRepository;
 
 import javax.sql.DataSource;
@@ -61,8 +62,8 @@ public class Persistence {
     }
 
     @Bean
-    public AccountsRepository accountsRepository(DataSource dataSource) {
-        return new MySQLAccountsRepository(dataSource);
+    public AccountsRepository accountsRepository(SessionFactory sessionFactory) {
+        return new HibernateAccountsRepository(sessionFactory);
     }
 
     @Bean

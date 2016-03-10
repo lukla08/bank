@@ -1,10 +1,12 @@
 package pl.training.bank.config;
 
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.*;
 import pl.training.bank.operation.ConsoleOperationLogger;
 import pl.training.bank.service.AccountNumberGenerator;
 import pl.training.bank.service.AccountsService;
+import pl.training.bank.service.HibernateIncrementalAccountNumberGenerator;
 import pl.training.bank.service.MySQLIncrementalAccountNumberGenerator;
 import pl.training.bank.service.repository.AccountsRepository;
 
@@ -17,8 +19,8 @@ public class Beans {
 
     @Scope(BeanDefinition.SCOPE_PROTOTYPE)
     @Bean
-    public AccountNumberGenerator accountNumberGenerator(DataSource dataSource) {
-        return new MySQLIncrementalAccountNumberGenerator(dataSource);
+    public AccountNumberGenerator accountNumberGenerator(SessionFactory sessionFactory) {
+        return new HibernateIncrementalAccountNumberGenerator(sessionFactory);
     }
 
     @Bean(initMethod = "init", destroyMethod = "destroy")
