@@ -1,30 +1,24 @@
 package pl.training.bank.config;
 
 import org.springframework.beans.factory.config.BeanDefinition;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.*;
 import pl.training.bank.operation.ConsoleOperationLogger;
 import pl.training.bank.service.AccountNumberGenerator;
 import pl.training.bank.service.AccountsService;
-import pl.training.bank.service.IncrementalAccountNumberGenerator;
+import pl.training.bank.service.MySQLIncrementalAccountNumberGenerator;
 import pl.training.bank.service.repository.AccountsRepository;
-import pl.training.bank.service.repository.HashMapAccountsRepository;
 
+import javax.sql.DataSource;
+
+@Import(Persistence.class)
 @EnableAspectJAutoProxy
 @Configuration
 public class Beans {
 
     @Scope(BeanDefinition.SCOPE_PROTOTYPE)
     @Bean
-    public AccountNumberGenerator accountNumberGenerator() {
-        return new IncrementalAccountNumberGenerator();
-    }
-
-    @Bean
-    public AccountsRepository accountsRepository() {
-        return new HashMapAccountsRepository();
+    public AccountNumberGenerator accountNumberGenerator(DataSource dataSource) {
+        return new MySQLIncrementalAccountNumberGenerator(dataSource);
     }
 
     @Bean(initMethod = "init", destroyMethod = "destroy")
