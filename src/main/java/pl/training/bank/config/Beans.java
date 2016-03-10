@@ -10,7 +10,7 @@ import pl.training.bank.service.repository.AccountsRepository;
 
 import javax.persistence.EntityManagerFactory;
 
-@Import(Persistence.class)
+@Import({Persistence.class, Web.class})
 @EnableAspectJAutoProxy
 @Configuration
 public class Beans {
