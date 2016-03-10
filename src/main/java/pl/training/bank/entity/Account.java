@@ -5,9 +5,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+@NamedQuery(name = Account.SELECT_BY_NUMBER_QL, query = "select a from Account a where a.number = :number")
 @Table(name = "accounts")
 @Entity
 public class Account implements Serializable {
+
+    public static final String SELECT_BY_NUMBER_QL = "accountSelectByNumber";
 
     @GeneratedValue
     @Id
