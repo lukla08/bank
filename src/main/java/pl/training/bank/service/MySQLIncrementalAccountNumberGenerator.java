@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public class MySQLIncrementalAccountNumberGenerator implements AccountNumberGenerator {
 
-    private static final String SELECT_LAST_ACCOUNT_NUMBER_SQL = "select max(number) from accounts a";
+    private static final String SELECT_LAST_ACCOUNT_NUMBER_SQL = "select max(number) from accounts";
 
     private AtomicLong counter = new AtomicLong();
 
