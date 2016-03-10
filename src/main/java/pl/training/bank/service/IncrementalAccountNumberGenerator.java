@@ -4,7 +4,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public class IncrementalAccountNumberGenerator implements AccountNumberGenerator {
 
-    private AtomicLong counter = new AtomicLong();
+    protected AtomicLong counter = new AtomicLong();
 
     @Override
     public String getNext() {
