@@ -54,7 +54,7 @@ public class Persistence {
         factoryBean.setDataSource(dataSource);
         factoryBean.setPackagesToScan("pl.training.bank.entity");
         factoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
-        factoryBean.setJpaProperties(jpaProperties);
+        //factoryBean.setJpaProperties(jpaProperties);
         return factoryBean;
     }
 
