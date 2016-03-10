@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <context:property-placeholder location="classpath:jdbc.properties"/>
+    <import resource="persistence.xml"/>
 
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="url" value="${}"/>
+    <bean id="accountNumberGenerator" class="pl.training.bank.service.MySQLIncrementalAccountNumberGenerator" scope="prototype">
+        <constructor-arg name="dataSource" ref="dataSource"/>
     </bean>
-
-    <bean id="accountsRepository" class="pl.training.bank.service.repository.HashMapAccountsRepository"/>
-
-    <bean id="accountNumberGenerator" class="pl.training.bank.service.IncrementalAccountNumberGenerator" scope="prototype"/>
 
     <bean id="accountsService" class="pl.training.bank.service.AccountsService" init-method="init" destroy-method="destroy">
         <constructor-arg name="accountsRepository" ref="accountsRepository"/>
