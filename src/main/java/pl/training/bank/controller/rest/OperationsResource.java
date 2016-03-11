@@ -50,10 +50,10 @@ public class OperationsResource {
     public ResponseEntity<?> onInsufficientFunds() {
         return new ResponseEntity<ExceptionDTO>(new ExceptionDTO(ExceptionType.INSUFFICIENT_FUNDS), HttpStatus.PRECONDITION_FAILED);
     }
-//
-//    @ExceptionHandler(NoSuchOperationException.class)
-//    public ResponseEntity<?> onNoSuchOperation() {
-//        return new ResponseEntity<ExceptionDTO>(new ExceptionDTO(ExceptionType.UNKNOWN_OPERATION), HttpStatus.BAD_REQUEST);
-//    }
+
+    @ExceptionHandler(NoSuchOperationException.class)
+    public ResponseEntity<?> onNoSuchOperation() {
+        return new ResponseEntity<ExceptionDTO>(new ExceptionDTO(ExceptionType.UNKNOWN_OPERATION), HttpStatus.BAD_REQUEST);
+    }
 
 }
