@@ -13,7 +13,7 @@ import pl.training.bank.dto.CustomObjectMapper;
 
 import java.util.List;
 
-@ComponentScan("pl.training.bank.rest")
+@ComponentScan("pl.training.bank.controller")
 @EnableWebMvc
 @Configuration
 public class Web extends WebMvcConfigurerAdapter {
