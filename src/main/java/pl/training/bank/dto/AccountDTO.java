@@ -1,5 +1,8 @@
 package pl.training.bank.dto;
 
+import javax.xml.bind.annotation.XmlType;
+
+@XmlType
 public class AccountDTO {
 
     private long balance;

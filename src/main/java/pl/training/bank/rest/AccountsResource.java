@@ -18,7 +18,7 @@ import pl.training.bank.service.repository.ResultPage;
 import java.net.URI;
 import java.util.List;
 
-@RequestMapping("api/accounts")
+@RequestMapping(value = "api/accounts", produces = {"application/xml", "application/json"})
 @RestController
 public class AccountsResource {
 

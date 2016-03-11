@@ -1,7 +1,9 @@
 package pl.training.bank.dto;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
+@XmlRootElement
 public class AccountsListDTO {
 
     private int pageNumber;

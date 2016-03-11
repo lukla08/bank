@@ -3,6 +3,7 @@ package pl.training.bank.service.repository;
 import pl.training.bank.entity.Account;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 public class AccountsRepositoryImpl implements AccountsRepositoryCustom {
@@ -12,13 +13,13 @@ public class AccountsRepositoryImpl implements AccountsRepositoryCustom {
 
     @Override
     public Account getByNumber(String number) {
-        Account account = entityManager.createNamedQuery(Account.SELECT_BY_NUMBER_QL, Account.class)
-                .setParameter("number", number)
-                .getSingleResult();
-        if (account == null) {
+        try {
+            return entityManager.createNamedQuery(Account.SELECT_BY_NUMBER_QL, Account.class)
+                    .setParameter("number", number)
+                    .getSingleResult();
+        } catch (NoResultException ex) {
             throw new AccountNotFoundException();
         }
-        return account;
     }
 
     public void setEntityManager(EntityManager entityManager) {
