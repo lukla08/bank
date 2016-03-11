@@ -8,6 +8,9 @@ public class ResultPage<T> {
     private int pageNumber;
     private int totalPages;
 
+    public ResultPage() {
+    }
+
     public ResultPage(List<T> content, int pageNumber, int totalPages) {
         this.content = content;
         this.pageNumber = pageNumber;
