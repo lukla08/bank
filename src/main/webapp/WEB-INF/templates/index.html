@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"/>
+    <title>Bank</title>
 </head>
 <body>
-sadsadasdasdsadsa
+<div class="container">
+    <h1>Menu</h1>
+    <ul>
+        <li><a href="createAccount.html" th:text="#{index.createAccountLink}">Create account link</a></li>
+        <li><a href="operationForm.html?operationType=deposit" th:text="#{index.depositFundsLink}">Deposit </a></li>
+        <li><a href="operationForm.html?operationType=withdraw" th:text="#{index.withdrawFundsLink}">Withdraw</a></li>
+        <li><a href=""  th:text="#{index.transferFundsLink}">Transfer</a></li>
+        <li><a href="logout"  th:text="#{index.logoutLink}">Logout</a></li>
+    </ul>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </body>
 </html>
