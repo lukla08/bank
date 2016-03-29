@@ -28,7 +28,7 @@ public class Beans {
 
     @Bean
     public ConsoleOperationLogger operationLogger() {
-        return new ConsoleOperationLogger();
+        return new ConsoleOperationLogger();ddd
     }
 
 }
